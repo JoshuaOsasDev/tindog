@@ -89,7 +89,7 @@ export const dogs = [
   },
 ];
 
-const blogPosts = [
+export const blogPosts = [
   {
     title: "5 Tips to Prepare Your Home for a New Dog",
     excerpt:
