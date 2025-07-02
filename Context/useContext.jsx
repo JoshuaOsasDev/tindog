@@ -36,24 +36,35 @@ function ContextProvider({ children }) {
   };
 
   useEffect(() => {
-    const obsOptions = {
-      root: null,
-      threshold: 0,
-      // rootMargin: "-200px 0px 0px 0px",
-    };
-
-    const obsCallBack = ([entry]) => {
+    const observerCallback = ([entry]) => {
       setSticky(!entry.isIntersecting);
     };
 
-    const currentRef = observerRef.current;
-    const observer = new IntersectionObserver(obsCallBack, obsOptions);
-    if (currentRef) observer.observe(currentRef);
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+    };
+
+    let observer;
+
+    const startObserving = () => {
+      const current = observerRef.current;
+      if (current) {
+        observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(current);
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      startObserving();
+    }, 50); // Short delay allows element to mount
 
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
+      clearTimeout(timeout);
+      if (observer && observer.disconnect) observer.disconnect();
     };
   }, []);
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
