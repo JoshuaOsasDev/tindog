@@ -2,7 +2,7 @@ import { FaApple, FaAppStore, FaGooglePlay } from "react-icons/fa";
 
 function Hero() {
   return (
-    <div className="mt-10 flex h-fit flex-col items-center justify-center space-y-7 p-7 md:flex-row">
+    <div className="mt-20 flex h-fit flex-col items-center justify-center space-y-7 p-7 md:flex-row">
       <div className="flex flex-col items-start space-y-5">
         <h1 className="max-w-sm font-mono text-[3.1rem]/20 font-extrabold text-white">
           Meet new and interesting dogs nearby
